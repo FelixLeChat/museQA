@@ -17,8 +17,7 @@ Setup brainwaves+video capture
 ```eg. osc.tcp://45.79.176.71:5000 ```help:```http://developer.choosemuse.com/research-tools/```  
 3. Find a friend with windows computer
 4. Convince h(er/im) to download these :  
-```http://camstudio.org/ ```  
-``` http://www.commentcamarche.net/download/telecharger-34087988-convert-avi-to-mp4```  
+```http://camstudio.org/  http://www.commentcamarche.net/download/telecharger-34087988-convert-avi-to-mp4 ```  
 5. Run FTPUpload.exe  
 ```../muse/component/FTPUpload.exe```  
 6. Open camstudio  
