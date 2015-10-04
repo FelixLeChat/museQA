@@ -18,6 +18,7 @@ Setup brainwaves+video capture
  
 help:
 ```http://developer.choosemuse.com/research-tools/```
+
 3. Find a friend with windows computer
 4. Convince h(er/im) to download these :  
 ```http://camstudio.org/ ```
