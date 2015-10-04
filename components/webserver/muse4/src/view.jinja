@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Test video</title>
+  <script src="/jquery-2.1.4.min.js" charset="utf-8"></script>
+  <script src="http://code.highcharts.com/stock/highstock.js"></script>
+  <script src="http://code.highcharts.com/stock/modules/exporting.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular.min.js"></script>
+  <script src="http://code.highcharts.com/highcharts-more.js"></script>
+  <script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container">
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/">Home</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+
+    <div class="col-md-4">
+      <h1>{{message}}</h1>
+      <div class="embed-responsive embed-responsive-16by9">
+      <video id="v0" controls tabindex="0" autobuffer preload="auto" class="embed-responsive-item">
+        <source type="video/mp4" src="{{vid_url}}"></source>
+        <p>Sorry, your browser does not support the &lt;video&gt; element.</p>
+      </video>
+      </div>
+      <button class="btn btn-primary" id="frameMinus"> <span class="glyphicon glyphicon-step-backward"></span> </button>
+      <button class="btn btn-primary" id="framePlus"> <span class="glyphicon glyphicon-step-forward"></span> </button>
+
+      <div id="videoInfo">
+
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <h1>Bootstrap starter template</h1>
+      <div id="target">
+        Wanted timestamp: <input type="text" id="wantedTime"><br>
+      </div>
+
+      <div style="width:55%;float: left;">
+        <div id="brainStockChart" style="width:80%;float: left;"></div>
+      </div>
+
+      <div style="width:35%;float: left;">
+        <div id="brainWeb" style="width:90%;float: left;"></div>
+      </div>
+
+    </div>
+
+    <script type="text/javascript">
+    var brainDatas =[
+     {% for item in data_obj %}
+    {serie : 0, time : {{ item['time']}}, gamma : {{ item['gamma']}} , delta : {{ item['delta']}},theta : {{ item['theta']}} ,beta : {{ item['beta']}},alpha : {{ item['alpha']}} }
+    {% endfor %} ];
+    $(document).ready(function(){
+      var video = $("#v0");
+      video.load();
+      var vid= video.get(0);
+      video.on(
+        "timeupdate",
+        function(event){
+          $("#videoInfo").text(this.currentTime);
+        });
+        $("#framePlus").click(function(){
+          vid.pause();
+          vid.currentTime = vid.currentTime + 1/24;
+        });
+        $("#frameMinus").click(function(){
+          vid.pause();
+          vid.currentTime = vid.currentTime - 1/24;
+        });
+
+        setTimeout( function(){video.load();}, 1000);
+      });
+
+      </script>
+
+      <script src="/brainWebScript.js"></script>
+
+    </div>
+
+  </body>
+  </html>
